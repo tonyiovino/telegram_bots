@@ -13,22 +13,17 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
 
-function testBot() {
-    console.log(bot);
-}
-// testBot();
+bot.start(ctx => {
+    ctx.reply('This is a simple echo bot');
+});
 
-function testMiddleware() {
-    bot.use( (ctx, next) => {
-        console.log('middleware here!');
-        next();
-    });
+bot.on('text', ctx => {
+    // console.log(ctx.from);
+    if (ctx.from.username === 'fabioztessitore') {
+        ctx.reply('IMPORTANT: ' + ctx.message.text);
+    } else {
+        ctx.reply('UNVERIFIED CLAIM: ' + ctx.message.text);
+    }
+});
 
-    bot.on('text', ctx => {
-        ctx.reply('Hello, World!');
-        ctx.reply('Yes, I\'m dumb ...');
-    });
-
-    bot.launch();
-}
-testMiddleware();
+bot.launch();
