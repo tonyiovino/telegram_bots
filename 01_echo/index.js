@@ -18,11 +18,8 @@ bot.start(ctx => {
 });
 
 bot.on('text', ctx => {
-    // console.log(ctx.from);
-    if (ctx.from.username === 'fabioztessitore') {
+    if (Math.random() < .1) {
         ctx.reply('IMPORTANT: ' + ctx.message.text);
-    } else {
-        ctx.reply('UNVERIFIED CLAIM: ' + ctx.message.text);
     }
 });
 
