@@ -21,7 +21,6 @@ bot.on('text', ctx => {
     if (Math.random() < .1) {
         ctx.reply('IMPORTANT: ' + ctx.message.text);
     }
-
 });
 
 bot.launch();
